@@ -16,16 +16,14 @@
   }
   ```
 
-  or this in your .htaccess for apache
+  or this in your .htaccess for apache (don't forget don't allow .htaccess in your apache configuration)
 
   ```nginx
   RewriteEngine On
   RewriteBase /
-  location / {
-      if (!-e $request_filename){
-          rewrite ^(.*)$ /index.php?url=$1;
-      }
-  }
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ index.php?url=$1 [L]
   ```
 
   
