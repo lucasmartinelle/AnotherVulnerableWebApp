@@ -9,6 +9,9 @@
 
         // création d'une nouvelle route
         public function create($url, $label, $name, $controller, $view, $template){
+            if(!$this->stringStartsWith($url, "/")){
+                $url = "/"  . $url;
+            }
             $this->_routes[$url] = array("label" => $label, "name" => $name, "controller" => $controller, "view" => $view, "template" => $template);
             $this->_routesByLabel[$label] = array("url" => $url, "name" => $name, "controller" => $controller, "view" => $view, "template" => $template);
         }
@@ -187,6 +190,13 @@
             $ini += strlen($start);
             $len = strpos($string, $end, $ini) - $ini;
             return substr($string, $ini, $len);
+        }
+
+        private function stringStartsWith($haystack,$needle,$case=true) {
+            if ($case){
+                return strpos($haystack, $needle, 0) === 0;
+            }
+            return stripos($haystack, $needle, 0) === 0;
         }
     }
 ?>
