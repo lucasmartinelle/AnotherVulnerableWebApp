@@ -9,9 +9,6 @@
 
         // création d'une nouvelle route
         public function create($url, $label, $name, $controller, $view, $template){
-            if(!$this->stringStartsWith($url, "/")){
-                $url = "/"  . $url;
-            }
             $this->_routes[$url] = array("label" => $label, "name" => $name, "controller" => $controller, "view" => $view, "template" => $template);
             $this->_routesByLabel[$label] = array("url" => $url, "name" => $name, "controller" => $controller, "view" => $view, "template" => $template);
         }
@@ -20,6 +17,9 @@
             if(empty($url)){
                 header('Location: ' . URL . $this->_routesByLabel[DEFAULT_PAGE]["url"]);
             } else {
+                if($this->stringStartsWith($url, "/") === false){
+                    $url = "/"  . $url;
+                }
                 // gestion des erreurs
                 $pageLoad = 0;
                 $controllerExist = 0;
