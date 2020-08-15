@@ -1,8 +1,37 @@
 # Download
 
 * execute `git clone https://github.com/lucasmartinelle/vulnerability.git`,
+
 * create a '`vulnerability`' database and paste the tables from the '`base.sql`' file into it,
+
 * Modify the variables in `app/init.php` according to your needs,
+
+* paste this in your "site-enable" configuration for nginx
+
+  ```nginx
+  location / {
+      if (!-e $request_filename){
+          rewrite ^(.*)$ /index.php?url=$1;
+      }
+  }
+  ```
+
+  or this in your .htaccess for apache
+
+  ```nginx
+  RewriteEngine On
+  RewriteBase /
+  location / {
+      if (!-e $request_filename){
+          rewrite ^(.*)$ /index.php?url=$1;
+      }
+  }
+  ```
+
+  
+
+* You need to add 'PDO' modules in your php.ini.
+
 * You can also modify the URLS / titles of the pages in `app/Routes.php` in the `initRoutes` function by following the [documentation](https://github.com/lucasmartinelle/blankmvc/blob/master/README.md).
 
 # Vulnerability and solution :
