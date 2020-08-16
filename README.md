@@ -1,6 +1,6 @@
 # Download
 
-* execute `git clone https://github.com/lucasmartinelle/vulnerability.git`,
+* execute `git clone https://github.com/lucasmartinelle/vulnerability.git` (and add `img` folder in `assets`),
 
 * create a '`vulnerability`' database and paste the tables from the '`base.sql`' file into it,
 
