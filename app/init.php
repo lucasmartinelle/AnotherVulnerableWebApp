@@ -3,7 +3,7 @@
     define('URL', 'https://'.$_SERVER['HTTP_HOST']); // don't put "/" at the end of URL
     define('DEFAULT_PAGE', 'login'); // label of default page
     define('TITLE', 'Vulnerability'); // Global title
-    define('WEBSITE_PATH', '/var/www/html/'); // website path
+    define('WEBSITE_PATH', '/var/www/html/'); // website path. Need a "/" at the end of the path.
 
     // make sure to enable PDO drivers
     define('DB_HOST', '127.0.0.1'); // host MYSQL
