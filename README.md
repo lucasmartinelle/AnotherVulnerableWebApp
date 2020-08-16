@@ -34,4 +34,4 @@ Change `AllowOverride None` to `AllowOverride All` line 172 on `/etc/apache2/apa
 On `/etc/apache2/sites-enabled/000-default.conf` change `DocumentRoot /var/www/html/` by `DocumentRoot /var/www/html/AnotherVulnerableWebApp` on line 12
 
 ## Solutions :
-You can get information about the current vulnerabilities / solutions [here](/tree/master/Writeup) with more or less details, the goal being that you also do research on your side to better understand them and build your own methodology / payloads
+You can get information about the current vulnerabilities / solutions [here](https://github.com/lucasmartinelle/AnotherVulnerableWebApp/tree/master/Writeup) with more or less details, the goal being that you also do research on your side to better understand them and build your own methodology / payloads
