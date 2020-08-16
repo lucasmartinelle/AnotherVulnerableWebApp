@@ -9,8 +9,8 @@ apt-get update && apt-get upgrade -y
 apt-get install apache2 php php-mysql mariadb-server
 a2enmod rewrite
 git clone https://github.com/lucasmartinelle/AnotherVulnerableWebApp
-mkdir AnotherVulnerableWebApp/assets/img
 mv AnotherVulnerableWebApp/ /var/www/html/
+chown www-data:www-data /var/www/html/ -R && chmod 775 /var/www/html/ -R
 ```
 
 Create the database :
