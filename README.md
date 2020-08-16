@@ -28,7 +28,7 @@ Import the SQL File :
 mysql -u root vulnerability < base.sql
 ```
 
-Uncomment `extension=pdo_mysql` on `/etc/php/{version}/apache2/php.ini`
+Uncomment `extension=pdo_mysql` on `/etc/php/{version}/apache2/php.ini`  
 Change `AllowOverride None` to `AllowOverride All` line 172 on `/etc/apache2/apache2.conf`
 
 On `/etc/apache2/sites-enabled/000-default.conf` change `DocumentRoot /var/www/html/` by `DocumentRoot /var/www/html/AnotherVulnerableWebApp` on line 12
