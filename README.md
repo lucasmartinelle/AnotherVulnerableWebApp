@@ -35,3 +35,6 @@ On `/etc/apache2/sites-enabled/000-default.conf` change `DocumentRoot /var/www/h
 
 ## Solutions :
 You can get information about the current vulnerabilities / solutions [here](https://github.com/lucasmartinelle/AnotherVulnerableWebApp/tree/master/Writeup) with more or less details, the goal being that you also do research on your side to better understand them and build your own methodology / payloads
+
+## Contributions :
+This repository is for beginners, don't hesitate to create a PR to improve the code, add vulnerabilities, submit your writeup :)
