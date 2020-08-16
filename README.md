@@ -1,66 +1,40 @@
-# Download
+![](https://zupimages.net/up/20/33/m7ef.png)
 
-* execute `git clone https://github.com/lucasmartinelle/vulnerability.git` (and add `img` folder in `assets`),
+Simple vulnerable site, created by a beginner for beginners.
+This vulnerable site covers several vulnerabilities some from real bugbounty cases encountered in bugbounty, can you find them?
 
-* create a '`vulnerability`' database and paste the tables from the '`base.sql`' file into it,
+## Installation
+```bash
+apt-get update && apt-get upgrade -y
+apt-get install apache2 php php-mysql mariadb-server
+a2enmod rewrite
+git clone https://github.com/lucasmartinelle/AnotherVulnerableWebApp
+mkdir AnotherVulnerableWebApp/assets/img
+mv AnotherVulnerableWebApp/ /var/www/html/
+```
 
-* Modify the variables in `app/init.php` according to your needs,
+Create the database :
+```sql
+mysql -u root
+CREATE DATABASE vulnerability;
+GRANT ALL ON vulnerability.* TO 'vulnerability'@'localhost' IDENTIFIED BY '6xUm%3moNghtQaZ8Q';
+FLUSH PRIVILEGES;
+quit
+```
+If you want, change the password for `vulnerability` user and also in `/var/www/html/AnotherVulnerableWebApp/app/init.php`
 
-* paste this in your "site-enable" configuration for nginx
+Import the SQL File :
+```bash
+mysql -u root vulnerability < base.sql
+```
 
-  ```nginx
-  location / {
-      if (!-e $request_filename){
-          rewrite ^(.*)$ /index.php?url=$1;
-      }
-  }
-  ```
+Uncomment `extension=pdo_mysql` on `/etc/php/{version}/apache2/php.ini`  
+Change `AllowOverride None` to `AllowOverride All` line 172 on `/etc/apache2/apache2.conf`
 
-  or this in your .htaccess for apache (don't forget don't allow .htaccess in your apache configuration)
+On `/etc/apache2/sites-enabled/000-default.conf` change `DocumentRoot /var/www/html/` by `DocumentRoot /var/www/html/AnotherVulnerableWebApp` on line 12
 
-  ```nginx
-  RewriteEngine On
-  RewriteBase /
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)$ index.php?url=$1 [L]
-  ```
+## Solutions :
+You can get information about the current vulnerabilities / solutions [here](https://github.com/lucasmartinelle/AnotherVulnerableWebApp/tree/master/Writeup) with more or less details, the goal being that you also do research on your side to better understand them and build your own methodology / payloads
 
-  
-
-* You need to add 'PDO' modules in your php.ini.
-
-* You can also modify the URLS / titles of the pages in `app/Routes.php` in the `initRoutes` function by following the [documentation](https://github.com/lucasmartinelle/blankmvc/blob/master/README.md).
-
-# Vulnerability and solution :
-
-* XSS
-  + use of "[htmlspecialchars](https://www.php.net/manual/fr/function.htmlspecialchars.php)"
-  + [openclassroom XSS](https://openclassrooms.com/fr/courses/2091901-protegez-vous-efficacement-contre-les-failles-web/2680167-la-faille-xss)
-* iSQL
-  + use of "[htmlspecialchars](https://www.php.net/manual/fr/function.htmlspecialchars.php)"
-  + [prepared queries](https://www.php.net/manual/fr/pdo.prepared-statements.php) 
-  + typing (use of `(int)`, `(string)`, `(float)`, before a variable)
-  + [openclassroom iSQL](https://openclassrooms.com/fr/courses/2091901-protegez-vous-efficacement-contre-les-failles-web/2680180-linjection-sql)
-* attack by brute force
-  + IP ban after 20 tests
-  + [captcha](https://www.google.com/recaptcha/about/)
-  + [openclassroom brute force](https://openclassrooms.com/fr/courses/2091901-protegez-vous-efficacement-contre-les-failles-web/2680183-lattaque-par-force-brute)
-* Upload (double extension, content-type, malware, ..)
-  + file renaming (generation of a 16 random character string: `bin2hex(openssl_random_pseudo_bytes(32, MCRYPT_DEV_URANDOM)) `)
-  + extension control (only accept extensions related to photos for example (`jpg`, `png`, `gif`))
-  + checking that the file size is greater than 0
-  + checking that the file does not contain any code-like characters (`;`, `<`, `>`, ..)
-  + htaccess
-  + [openclassroom upload](https://openclassrooms.com/fr/courses/2091901-protegez-vous-efficacement-contre-les-failles-web/2680177-la-faille-upload) 
-* CRSF
-  + token (`bin2hex(openssl_random_pseudo_bytes(32, MCRYPT_DEV_URANDOM)) `)
-  + referer check (where the request comes from).
-  + [openclassroom crsf](https://openclassrooms.com/fr/courses/2091901-protegez-vous-efficacement-contre-les-failles-web/2863569-la-csrf)
-* CRLF
-  + deletion of line breaks [str_replace](https://www.php.net/manual/fr/function.str-replace.php)
-  + [filter](https://www.php.net/manual/fr/function.filter-var.php)
-  + [openclassroom crlf](https://openclassrooms.com/fr/courses/2091901-protegez-vous-efficacement-contre-les-failles-web/2863578-la-crlf)
-* Session steal
-  + token between each page check and modify
-  + [openclassroom session](https://openclassrooms.com/fr/courses/2091901-protegez-vous-efficacement-contre-les-failles-web/2918871-les-variable-de-session)
+## Contributions :
+This repository is for beginners, don't hesitate to create a PR to improve the code, add vulnerabilities, submit your writeup :)
