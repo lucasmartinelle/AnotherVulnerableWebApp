@@ -49,15 +49,18 @@
             $mail = new PHPMailer(True);
     
             $mail->isSMTP();
-            $mail->SMTPAuth = true; 
-            $mail->SMTPSecure = 'tls'; 
-            $mail->Host = 'smtp.gmail.com';
-            $mail->Port = 587;
+            $mail->SMTPAuth = EMAIL_SMTP_ACTIVE_AUTH;
+            if(EMAIL_DEBUG != false){
+                $mail->SMTPDebug = EMAIL_DEBUG;
+            }
+            $mail->SMTPSecure = EMAIL_SMTPSECURE;
+            $mail->Host = EMAIL_HOST;
+            $mail->Port = EMAIL_PORT;
     
-            $mail->Username = EMAIL_SENDER;
-            $mail->Password = PASSWORD_SENDER;
+            $mail->Username = EMAIL;
+            $mail->Password = EMAIL_PASSWORD;
     
-            $mail->SetFrom(EMAIL_SENDER, FROM_SENDER);
+            $mail->SetFrom(EMAIL, EMAIL_FROM);
             $mail->addAddress($this->email());
     
             $mail->IsHTML(true);
@@ -443,15 +446,18 @@
             $mail = new PHPMailer(True);
     
             $mail->isSMTP();
-            $mail->SMTPAuth = true; 
-            $mail->SMTPSecure = 'tls'; 
-            $mail->Host = 'smtp.gmail.com';
-            $mail->Port = 587;
+            $mail->SMTPAuth = EMAIL_SMTP_ACTIVE_AUTH;
+            if(EMAIL_DEBUG != false){
+                $mail->SMTPDebug = EMAIL_DEBUG;
+            }
+            $mail->SMTPSecure = EMAIL_SMTPSECURE;
+            $mail->Host = EMAIL_HOST;
+            $mail->Port = EMAIL_PORT;
     
-            $mail->Username = EMAIL_SENDER;
-            $mail->Password = PASSWORD_SENDER;
+            $mail->Username = EMAIL;
+            $mail->Password = EMAIL_PASSWORD;
     
-            $mail->SetFrom(EMAIL_SENDER, FROM_SENDER);
+            $mail->SetFrom(EMAIL, EMAIL_FROM);
             $mail->addAddress($this->email());
     
             $mail->IsHTML(true);
