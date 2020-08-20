@@ -1,7 +1,9 @@
 ![](https://zupimages.net/up/20/33/m7ef.png)
 
 Simple vulnerable site, created by a beginner for beginners.
-This vulnerable site covers several vulnerabilities some from real bugbounty cases encountered in bugbounty, can you find them?
+This vulnerable site covers several vulnerabilities some from real bugbounty cases encountered in bugbounty, can you find them ?
+
+Try [here](http://164.90.194.221/auth/login)
 
 ## Installation
 ```bash
