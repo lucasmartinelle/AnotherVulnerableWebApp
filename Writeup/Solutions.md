@@ -34,7 +34,7 @@ In other cases, it is also possible to upload malicious files such as ransomware
 
 ## 6 - Multiples CSRF
 
-The application does not have any protection against FSNA, it is possible to, for example, takeover another user's account by changing his password or modify his information.
+The application does not have any protection against CSRF, it is possible to, for example, takeover another user's account by changing his password or modify his information.
 
 If you host the following page on your server, if a user *victim* the visit, his password will be changed.
 
@@ -140,7 +140,7 @@ There are several ways to make the application crash and display an error messag
 php://filter/convert.base64-encode/resource=../../../../../../../../etc/passwd
 ```
 
-Instead of returning the contents of the `/etc/passwd` file, the application will display an error message. This not only confirms that the application is in PHP, but also allows us to get the full path to the application, which is useful to better exploit the BIA and also to get information about the logic of the application. This single message allows us to see that the application seems to use a VCM architecture.
+Instead of returning the contents of the `/etc/passwd` file, the application will display an error message. This not only confirms that the application is in PHP, but also allows us to get the full path to the application, which is useful to better exploit the LFI and also to get information about the logic of the application. This single message allows us to see that the application seems to use a VCM architecture.
 
 ```php
 **Warning**: file_get_contents(): open_basedir restriction in effect. File(../../../../../../../../../etc/passwd) is not within the allowed path(s): (/var/www//:/usr/lib/php/:/tmp/) in **/var/www/domain.tld/controllers/controllerDashboard.php** on line **70**
