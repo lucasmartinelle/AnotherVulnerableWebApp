@@ -3,7 +3,7 @@
 Simple vulnerable site, created by a beginner for beginners.
 This vulnerable site covers several vulnerabilities some from real bugbounty cases encountered in bugbounty, can you find them ?
 
-Try [here](http://164.90.194.221/auth/login)
+Try [here](http://64.227.17.89/auth/login)
 
 ## Installation
 ```bash
